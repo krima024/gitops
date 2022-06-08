@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: nodedemo
+  name: nodedemo
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nodedemo
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: nodedemo
+    spec:
+      containers:
+      - image: krimavyas/gitops:latest
+        imagePullPolicy: Always
+        name: nodedemo
+        resources: {}
+status: {}
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: lb-service
+  labels:
+    app: lb-service
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+    targetPort: 3000
+  selector:
+    app: nodedemo
