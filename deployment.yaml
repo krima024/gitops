@@ -21,8 +21,7 @@ spec:
       - image: krimavyas/gitops:latest
         imagePullPolicy: Always
         name: nodedemo
-        resources: {}
-status: {}
+       
 
 ---
 apiVersion: v1
